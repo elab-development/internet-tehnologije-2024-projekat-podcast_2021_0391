@@ -52,6 +52,28 @@ class CategoryController extends Controller
     }
 
 
+      public function destroy($id){
+        try{
+
+            $user = Auth::user();
+            if($user->role!="admin"){
+                return response()->json([
+                    'error' => 'You do not have permission to remove category.',
+                ], 403); 
+
+            }
+            $category = Category::findOrFail($id);
+            $category->delete();
+
+        }catch (\Exception $e) {
+         
+            return response()->json([
+                'error' => 'An error occurred while deleting the category.',
+            ], 500); 
+        }
+    }
+
+
 
   
 
