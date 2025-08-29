@@ -14,4 +14,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/podcasts',[PodcastController::class,'index']);
 
+    Route::get('/podcasts/{id}',[PodcastController::class,'show']);
+
 });
