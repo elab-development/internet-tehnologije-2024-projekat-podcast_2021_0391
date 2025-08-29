@@ -160,6 +160,43 @@ private function uploadBanner($file, $title,$podcast)
     return Storage::url($pathFile);
 }
     
+ public function destroy($id)
+    {
+        try {
+           
+    
+                  
+            $user = Auth::user();
+            $podcast = Podcast::findOrFail($id);
+            if ($podcast->creators()->where('user_id', $user->id)->exists() || $user->role=='admin') {
+               
+         
+          
+    
+            if ($podcast->banner) {
+                $putanjaBanera = public_path($podcast->banner);
+                $direktorijum = dirname($putanjaBanera);
+                if (File::exists($direktorijum)) {
+                    File::deleteDirectory($direktorijum);
+                }
+            }
+    
+          
+            $podcast->delete();
+    
+            return response()->json(['message' => 'The podcast and all associated resources have been successfully deleted.'], 200);
+        }
+
+            else{
+                return response()->json([
+                    'error' => 'You do not have permission to remove podcasts.',
+                ], 403); 
+            }
+        } catch (\Exception $e) {
+            Log::error('Greška prilikom brisanja podcasta: ' . $e->getMessage());
+            return response()->json(['message' => 'An error occurred while deleting the podcast.', 'error' => $e->getMessage()], 500);
+        }
+    }
 
 
 
