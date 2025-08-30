@@ -194,6 +194,32 @@ public function show($id){
 }
 
 
+public function addToFavorites($id)
+    {
+        try {
+           
+            $user = Auth::user();
+            if($user->role!='viewer'){
+                return response()->json([
+                    'error' => 'You do not have permission to add podcasts to favorites.',
+                ], 403); 
+            }
+            
+
+            $podcast = Podcast::findOrFail($id);
+
+         
+            if (!$user->myFavoritePodcasts->contains($podcast->id)) {
+                $user->myFavoritePodcasts()->attach($podcast->id);
+            }
+
+           
+            return response()->json(['message' => 'The podcast has been successfully added to favorites.'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'An error occurred while adding the podcast to favorites.','error'=> $e->getMessage()], 500);
+        }
+    }
+
 
      
  }
