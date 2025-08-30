@@ -1,0 +1,49 @@
+<?php
+ 
+ namespace App\Http\Controllers;
+
+ use App\Models\User;
+ use Illuminate\Http\Request;
+ use App\Http\Resources\UserResource;
+ use App\Http\Resources\PodcastResource;
+ use Illuminate\Support\Facades\Auth;
+ use Illuminate\Support\Facades\Log;
+ use App\Models\Podcast;
+ use Illuminate\Support\Facades\File;
+ use Illuminate\Support\Facades\Storage;
+ class UserController extends Controller
+ {
+     
+
+    public function index(Request $request)
+    {
+        try {
+           
+
+            $user = Auth::user();
+            if($user->role!='admin'){
+                return response()->json([
+                    'error' => 'You do not have permission to view users.',
+                ], 403); 
+            }
+            
+
+
+            $users = User::whereIn('role', ['viewer', 'creator'])->get();
+    
+       
+            return UserResource::collection($users);
+    
+        } catch (\Exception $e) {
+          
+            return response()->json([
+                'message' => 'An error occurred while loading the user.',
+                'error' => $e->getMessage()
+            ], 500); 
+        }
+    }
+
+
+
+     
+ }

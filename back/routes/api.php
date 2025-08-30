@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PodcastController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EpisodeController;
+use App\Http\Controllers\UserController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -27,4 +28,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/categories',[CategoryController::class,'index']);
     Route::post('/categories',[CategoryController::class,'store']);
     Route::delete('/categories/{id}',[CategoryController::class,'destroy']);
+
+
+    Route::get('/users',[UserController::class,'index']);
 });
