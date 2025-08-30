@@ -21,6 +21,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
     Route::post('/episodes',[EpisodeController::class,'store']);
+    Route::get('/episodes/file/{id}', [EpisodeController::class, 'getFile'])->name('episode.file');
     Route::get('/episodes/{id}', [EpisodeController::class, 'show']);
 
     Route::get('/categories',[CategoryController::class,'index']);

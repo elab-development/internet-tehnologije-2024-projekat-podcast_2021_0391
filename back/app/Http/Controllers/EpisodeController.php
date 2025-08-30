@@ -93,6 +93,34 @@ class EpisodeController extends Controller
             return response()->json(['error' => 'An error occurred while loading the episode.'], 500);
         }
     }
+
+
+        public function getFile($id)
+    {
+        try {
+           
+            $episode = Episode::findOrFail($id);
+            $relativePath = $episode->file;
+            $absolutePath = public_path($relativePath); 
+
+    
+            if (!File::exists($absolutePath)) {
+                return response()->json(['error' => 'File does not exist'], 404);
+            }
+    
+           
+            return response()->stream(function () use ($absolutePath) {
+                readfile($absolutePath);
+            }, 200, [
+                'Content-Type' => $episode->type,
+                'Accept-Ranges' => 'bytes',
+                'Content-Length' => filesize($absolutePath),
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Error occurred while loading file: ' . $e->getMessage());
+            return response()->json(['error' => 'An error occurred while loading the file.'], 500);
+        }
+    }
     
 
 
