@@ -103,6 +103,40 @@ public function show($id){
 
     
 
+ public function destroy($userId)
+    {
+        try {
+            
+
+
+            $user = Auth::user();
+            if($user->role!='admin'){
+                return response()->json([
+                    'error' => 'You do not have permission to delete users.',
+                ], 403); 
+            }
+            
+
+
+            $user = User::findOrFail($userId);
+            foreach ($user->myPodcasts as $podcast) {
+                if ($podcast->creators()->count() == 1) {
+                    $podcast->delete();
+                } 
+            }
+            $user->delete();
+            return response()->json([
+                'message' => 'User successfully deleted.'
+            ], 200);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'An error occurred while deleting the user.',
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+    }
+     
 
 
 
