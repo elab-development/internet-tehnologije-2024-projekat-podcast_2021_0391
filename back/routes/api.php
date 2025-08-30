@@ -33,4 +33,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/users',[UserController::class,'index']);
     Route::get('users/creators',[UserController::class,'creators']);
     Route::get('/users/my-podcasts',[UserController::class,'creatorPodcasts']);
+    Route::get('/users/{id}',[UserController::class,'show']);
 });

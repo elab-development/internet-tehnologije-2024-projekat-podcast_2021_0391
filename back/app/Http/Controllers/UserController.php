@@ -89,6 +89,18 @@
         }
        
     }
+
+
+    
+public function show($id){
+    try{
+        $user = User::findOrFail($id);
+        return new UserResource($user);
+    }catch (\Exception $e) {
+            return response()->json(['message' => 'An error occurred while fetching the user.','error'=> $e->getMessage()], 500);
+        }
+}
+
     
 
 
