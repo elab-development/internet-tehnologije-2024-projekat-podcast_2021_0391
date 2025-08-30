@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
     Route::post('/episodes',[EpisodeController::class,'store']);
-
+    Route::get('/episodes/{id}', [EpisodeController::class, 'show']);
 
     Route::get('/categories',[CategoryController::class,'index']);
     Route::post('/categories',[CategoryController::class,'store']);

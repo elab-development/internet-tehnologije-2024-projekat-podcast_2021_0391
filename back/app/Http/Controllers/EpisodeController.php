@@ -83,6 +83,16 @@ class EpisodeController extends Controller
 
         return Storage::url($pathFile); 
     }
+
+
+        public function show($id){
+        try{
+            $episode = Episode::findOrFail($id);
+            return new EpisodeResource($episode);
+        }catch (\Exception $e) {
+            return response()->json(['error' => 'An error occurred while loading the episode.'], 500);
+        }
+    }
     
 
 
