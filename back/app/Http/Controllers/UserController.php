@@ -221,5 +221,24 @@ public function addToFavorites($id)
     }
 
 
+     public function removeFavorite($id)
+    {
+        try {
+                 
+            $user = Auth::user();
+            if($user->role!='viewer'){
+                return response()->json([
+                    'error' => 'You do not have permission to remove podcasts from favorites.',
+                ], 403); 
+            }
+            $podcast = Podcast::findOrFail($id);
+            $user->myFavoritePodcasts()->detach($podcast->id);
+            return response()->json(['message' => 'The podcast has been successfully removed from favorites.'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'An error occurred while removing the podcast from favorites.','error'=> $e->getMessage()], 500);
+        }
+    }
+
+
      
  }
