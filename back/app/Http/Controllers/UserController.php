@@ -62,6 +62,33 @@
         }
     
     }
+
+      public function creatorPodcasts(Request $request)
+    {
+       
+        try{
+            $perPage = $request->input('per_page', 5); 
+            
+            $user = Auth::user();
+            if($user->role!='creator'){
+                return response()->json([
+                    'error' => 'You do not have permission to view podcasts.',
+                ], 403); 
+            }
+            
+
+
+
+            $podcasts = $user->myPodcasts()->paginate($perPage);
+            return PodcastResource::collection($podcasts);
+        }catch (\Exception $e) {
+            return response()->json([
+                'message' => 'An error occurred while fetching the podcast.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+       
+    }
     
 
 
