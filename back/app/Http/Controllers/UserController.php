@@ -136,7 +136,62 @@ public function show($id){
             ], 500);
         }
     }
+
+
+    
+    public function updateProfilePicture(Request $request){
+        try{
+            $request->validate([
+                 'profile_picture'=> 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            ]);
+            if($request->hasFile('profile_picture')){
+
+               $user = Auth::user();
+                if (File::exists($user->profile_picture)) {
+                    File::delete($user->profile_picture);
+                }
+
+                $user->profile_picture = $this->uploadLogo($request->file('profile_picture'), $user->username);
+                $user->save();
+            }
+
+            return response()->json([
+                'message' => 'User successfully updated.'
+            ], 200);
+
+            
+          
+
+            
+        }catch (\Exception $e) {
+            
+            return response()->json([
+                'message' => 'An error occurred while fetching the podcast.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
      
+
+
+    
+    private function uploadLogo($file, $username)
+{
+
+    $sanitizedusername = preg_replace('/[^a-zA-Z0-9_-]/', '_', $username);
+    $extension = $file->getClientOriginalExtension();
+    $filename = $sanitizedusername . '.' . $extension;
+
+ 
+    $path = 'app/' . $sanitizedusername;
+
+
+    if (!Storage::exists($path)) {
+        Storage::makeDirectory($path);
+    }
+    $pathFile = $file->storeAs($path, $filename,"public");
+    return Storage::url($pathFile);
+}
 
 
 

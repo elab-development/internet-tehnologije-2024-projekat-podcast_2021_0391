@@ -35,4 +35,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/users/my-podcasts',[UserController::class,'creatorPodcasts']);
     Route::get('/users/{id}',[UserController::class,'show']);
     Route::delete('/users/{id}',[UserController::class,'destroy']);
+    Route::put('/users',[UserController::class,'updateProfilePicture']);
 });
