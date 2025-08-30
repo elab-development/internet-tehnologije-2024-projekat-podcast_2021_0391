@@ -44,6 +44,28 @@
     }
 
 
+    
+    public function creators(Request $request){
+       
+        try {
+           
+
+            $users = User::where('role','creator')->get();
+            return UserResource::collection($users);
+    
+        } catch (\Exception $e) {
+           
+            return response()->json([
+                'message' => 'An error occurred while loading the user.',
+                'error' => $e->getMessage()
+            ], 500); 
+        }
+    
+    }
+    
+
+
+
 
      
  }
