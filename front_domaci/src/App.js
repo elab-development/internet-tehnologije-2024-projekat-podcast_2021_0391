@@ -7,6 +7,7 @@ import Register from './Components/Register';
 import Podcast from './Components/Podcast';
 import FavoritesPage from './Components/Favorites';
 import Korisnici from './Components/Users';
+import Kategorije from './Components/Categories';
 function App() {
   return (
     
@@ -18,6 +19,7 @@ function App() {
           <Route path="/podkasti" element={<Podcast />}/>
           <Route path="/omiljeni-podkasti" element={<FavoritesPage />}/>
             <Route path="/korisnici" element={<Korisnici />}/>
+                <Route path="/kategorije" element={<Kategorije />}/>
         </Routes>
       </div>
     </Router>
