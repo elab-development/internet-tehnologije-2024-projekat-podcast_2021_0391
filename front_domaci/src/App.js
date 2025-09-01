@@ -8,6 +8,8 @@ import Podcast from './Components/Podcast';
 import FavoritesPage from './Components/Favorites';
 import Korisnici from './Components/Users';
 import Kategorije from './Components/Categories';
+import MyAccount from './Components/MyAccount';
+import AddPodcast from './Components/AddPodcast';
 function App() {
   return (
     
@@ -18,9 +20,10 @@ function App() {
           <Route path="/registracija" element={<Register />}/>
           <Route path="/podkasti" element={<Podcast />}/>
           <Route path="/omiljeni-podkasti" element={<FavoritesPage />}/>
-            <Route path="/korisnici" element={<Korisnici />}/>
-                <Route path="/kategorije" element={<Kategorije />}/>
-                 <Route path="/my-account" element={<MyAccount />}/>
+          <Route path="/korisnici" element={<Korisnici />}/>
+          <Route path="/kategorije" element={<Kategorije />}/>
+          <Route path="/my-account" element={<MyAccount />}/>
+          <Route path="/add-podcast" element={<AddPodcast />}/>
         </Routes>
       </div>
     </Router>
