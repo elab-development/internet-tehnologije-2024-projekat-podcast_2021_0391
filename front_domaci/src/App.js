@@ -20,6 +20,7 @@ function App() {
           <Route path="/omiljeni-podkasti" element={<FavoritesPage />}/>
             <Route path="/korisnici" element={<Korisnici />}/>
                 <Route path="/kategorije" element={<Kategorije />}/>
+                 <Route path="/my-account" element={<MyAccount />}/>
         </Routes>
       </div>
     </Router>
