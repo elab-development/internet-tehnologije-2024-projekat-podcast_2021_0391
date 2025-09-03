@@ -11,6 +11,7 @@ import Kategorije from './Components/Categories';
 import MyAccount from './Components/MyAccount';
 import AddPodcast from './Components/AddPodcast';
 import PodcastDetails from './Components/PodcastDetails';
+import AddEpisode from './Components/AddEpisode';
 function App() {
   return (
     
@@ -25,7 +26,8 @@ function App() {
           <Route path="/kategorije" element={<Kategorije />}/>
           <Route path="/my-account" element={<MyAccount />}/>
           <Route path="/add-podcast" element={<AddPodcast />}/>
-            <Route path="/podcast/:podcastId" element={<PodcastDetails />} />
+          <Route path="/podcast/:podcastId" element={<PodcastDetails />} />
+          <Route path="/podcast/:podcastId/add-episode" element={<AddEpisode />} />
         </Routes>
       </div>
     </Router>
