@@ -8,6 +8,7 @@ import Podcast from './Components/Podcast';
 import FavoritesPage from './Components/Favorites';
 import Users from './Components/Users';
 import Categories from './Components/Categories';
+import MyAccount from './Components/MyAccount';
 function App() {
   return (
     
@@ -20,6 +21,7 @@ function App() {
           <Route path="/omiljeni-podkasti" element={<FavoritesPage />}/>
             <Route path="/korisnici" element={<Users />}/>
              <Route path="/kategorije" element={<Categories />}/>
+                 <Route path="/my-account" element={<MyAccount />}/>
         </Routes>
       </div>
     </Router>
