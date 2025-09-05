@@ -12,6 +12,7 @@ import MyAccount from './Components/MyAccount';
 import AddPodcast from './Components/AddPodcast';
 import PodcastDetails from './Components/PodcastDetails';
 import AddEpisode from './Components/AddEpisode';
+import EpisodeDetails from './Components/EpisodeDetails';
 function App() {
   return (
     
@@ -28,6 +29,7 @@ function App() {
           <Route path="/add-podcast" element={<AddPodcast />}/>
           <Route path="/podcast/:podcastId" element={<PodcastDetails />} />
           <Route path="/podcast/:podcastId/add-episode" element={<AddEpisode />} />
+           <Route path="/podcast/:podcastId/episode/:episodeId" element={<EpisodeDetails />} />
         </Routes>
       </div>
     </Router>
