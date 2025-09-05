@@ -11,6 +11,7 @@ import Categories from './Components/Categories';
 import MyAccount from './Components/MyAccount';
 import AddPodcast from './Components/AddPodcast';
 import PodcastDetails from './Components/PodcastDetails';
+import AddEpisode from './Components/AddEpisode';
 function App() {
   return (
     
@@ -21,11 +22,12 @@ function App() {
           <Route path="/registracija" element={<Register />}/>
           <Route path="/podkasti" element={<Podcast />}/>
           <Route path="/omiljeni-podkasti" element={<FavoritesPage />}/>
-            <Route path="/korisnici" element={<Users />}/>
-             <Route path="/kategorije" element={<Categories />}/>
-                 <Route path="/my-account" element={<MyAccount />}/>
-                    <Route path="/add-podcast" element={<AddPodcast />}/>
-                      <Route path="/podcast/:podcastId" element={<PodcastDetails />} />
+          <Route path="/korisnici" element={<Users />}/>
+          <Route path="/kategorije" element={<Categories />}/>
+          <Route path="/my-account" element={<MyAccount />}/>
+          <Route path="/add-podcast" element={<AddPodcast />}/>
+          <Route path="/podcast/:podcastId" element={<PodcastDetails />} />
+          <Route path="/podcast/:podcastId/add-episode" element={<AddEpisode />} />
         </Routes>
       </div>
     </Router>
