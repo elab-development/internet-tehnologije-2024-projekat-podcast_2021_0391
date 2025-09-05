@@ -14,6 +14,7 @@ import PodcastDetails from './Components/PodcastDetails';
 import AddEpisode from './Components/AddEpisode';
 import EpisodeDetails from './Components/EpisodeDetails';
 import ChangeProfilePicture from './Components/ChangeProfilePicture';
+import Spotify from './Components/spotify/Spotify';
 function App() {
   return (
     
@@ -32,6 +33,7 @@ function App() {
           <Route path="/podcast/:podcastId/add-episode" element={<AddEpisode />} />
            <Route path="/podcast/:podcastId/episode/:episodeId" element={<EpisodeDetails />} />
              <Route path="/my-account/change-profile-picture" element={<ChangeProfilePicture/>}/>
+               <Route path="/spotify" element={<Spotify/>}/>
         </Routes>
       </div>
     </Router>
